@@ -1,0 +1,33 @@
+{
+  "name": "oilbirtWalk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "michael yee",
+  "license": "ISC",
+  "devDependencies": {
+    "angular-classy": "^1.2.4",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-minifier": "^0.2.2",
+    "gulp-pug": "^3.3.0",
+    "jshint": "^2.9.5"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^1.6.0",
+    "angular-classy": "^1.2.4",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "express-session": "^1.15.5",
+    "gulp-jshint": "^2.0.4",
+    "mongoose": "^4.11.5",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0",
+    "pug": "^2.0.0-rc.3"
+  }
+}

@@ -1,0 +1,10 @@
+.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', ng-click='close(false)', data-dismiss='modal', aria-hidden='true') ×
+        h4.modal-title uh oh!
+      .modal-body
+        p Please Login or register to access the entire app
+      .modal-footer(style="justify-content: flex-start;")
+        a(href="/login") Login

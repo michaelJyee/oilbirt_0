@@ -1,0 +1,35 @@
+doctype html
+html(lang='en', ng-app="myApp")
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    base(href="/index/")
+    title ObjMe
+    link(href="/css/index.css", rel="stylesheet")
+    script.
+      var userConfig = !{userConfig};
+  body(ng-controller="userController")#page-top.fixed-nav
+    // Navigation
+    nav#mainNav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+      a.navbar-brand(href='#') ObjMe #{currentUser}
+      ul.navbar-nav.ml-auto
+        li.nav-item(ng-show="!currentUser._id")
+          a.nav-link(href="/login") LOGIN
+        li.nav-item(ng-show="currentUser._id")
+          a.nav-link(ng-click="uploadModal()")
+            i.fa.fa-fw.fa-upload
+        li.nav-item(ng-show="currentUser._id")
+          a.nav-link(data-toggle='modal', data-target='#')
+            i.fa.fa-fw.fa-heart
+        li.nav-item(ng-show="currentUser._id")
+          a.nav-link(ng-click="logoutModal()")
+            i.fa.fa-fw.fa-user
+    .content-wrapper.py-3
+      div(ng-view)
+    // JavaScript
+    // Custom scripts for this template
+    script(src='/js/lib/lib.js')
+    script(src="/js/mapp/mapp.js")
