@@ -8,6 +8,10 @@ app.config(function($locationProvider,$routeProvider) {
       templateUrl : "/js/mapp/templates/feed.html",
       controller : "feedController"
     })
+    .when("/contact", {
+      templateUrl : "/js/mapp/templates/newContact.html",
+      controller : "newContractController"
+    })
     .when("/profile", {
       templateUrl : "/js/mapp/templates/user.html",
       controller : "feedController"
