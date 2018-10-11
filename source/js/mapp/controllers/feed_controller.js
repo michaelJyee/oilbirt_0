@@ -14,7 +14,7 @@ app.classy.controller({
       items:[]
     };
 
-    this.getData(true);
+    // this.getData(true);
   },
 
   methods: {

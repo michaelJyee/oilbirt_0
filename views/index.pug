@@ -7,14 +7,14 @@ html(lang='en', ng-app="myApp")
     meta(name='description', content='')
     meta(name='author', content='')
     base(href="/index/")
-    title ObjMe
+    title oilbirt
     link(href="/css/index.css", rel="stylesheet")
     script.
       var userConfig = !{userConfig};
   body(ng-controller="userController")#page-top.fixed-nav
     // Navigation
     nav#mainNav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
-      a.navbar-brand(href='#') ObjMe #{currentUser}
+      a.navbar-brand(href='#') oilbirt #{currentUser}
       ul.navbar-nav.ml-auto
         li.nav-item(ng-show="!currentUser._id")
           a.nav-link(href="/login") LOGIN

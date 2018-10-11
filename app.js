@@ -38,7 +38,7 @@ app.use(function(req,res,next){
 
 // Auth Routes
 app.get('/', function (req, res) {
-  res.redirect('/index')
+  res.redirect('/index/')
 });
 
 app.get('/secret', loggedIn, function (req, res) {
@@ -59,21 +59,21 @@ app.post('/register', function(req,res){
     }
     else{
       passport.authenticate("local")(req,res,function(){
-        res.redirect('/index');
+        res.redirect('/index/');
       });
     }
   });
 });
 
 
-app.get('/index/*', function(req,res){
+app.get('/index*', function(req,res){
   res.render('index');
 });
 
 //Login
 app.get('/login', function(req,res){
   if(req.isAuthenticated()){
-    res.redirect('/index');
+    res.redirect('/index/');
   }
   else{
     res.render('login');
