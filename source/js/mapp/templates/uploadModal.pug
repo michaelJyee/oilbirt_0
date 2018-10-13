@@ -6,15 +6,32 @@
         button.close(type='button', ng-click='close(false)', data-dismiss='modal', aria-label='Close')
           span(aria-hidden='true') ×
       .modal-body
+        style.
+          #upload-file{
+            display:none;
+          }
+          button.btn.btn-primary.upload-btn{
+            cursor: pointer
+          }
+
         div(class="form-group")
-          label(for="exampleInputEmail1") Title
+          label Title
           input(ng-model="d.title"  class="form-control" placeholder="Title")
           br
-          label(for="exampleInputEmail1") Image Url
-          input(ng-model="d.url" class="form-control" placeholder="Image Url")
+          label Contact File List
+          div.panel-body
+            button.btn.btn-primary.upload-btn(ng-click="upload()") upload
+            span(style="vertical-align: bottom;text-decoration: underline;margin-left: 10px;") {{d.file.name}}
+            input#upload-file(type='file', onChange="angular.element(this).scope().parseFile(this.files[0])" name='upload-file', multiple='')
           br
+          div(ng-if="false")
+            label Select
+            div
+              select
+                option(ng-repeat="col in data.columns", value="{{$index}}") {{col}}
+            br
           small(id="emailHelp" class="form-text text-muted") I dont have any money
         
       .modal-footer
         button.btn.btn-secondary(type='button' data-dismiss='modal' ng-click="close(false)" style="cursor:pointer;") Cancel
-        button.btn.btn-primary(ng-disabled="!d.title || !d.url" ng-click="upload()" style="cursor:pointer;") Upload
+        button.btn.btn-primary(ng-disabled="!d.title || !d.file" ng-click="save()" style="cursor:pointer;") Save

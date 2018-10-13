@@ -30,7 +30,7 @@ app.classy.controller({
       // Just provide a template url, a controller and call 'showModal'.
       that.ModalService.showModal({
         templateUrl: "/js/mapp/templates/uploadModal.html",
-        controller: "init"
+        controller: "uploadContactListModelController"
       }).then(function(modal) {
         // The modal object has the element built, if this is a bootstrap modal
         // you can call 'modal' to show it, if it's a custom modal just show or hide
