@@ -7,6 +7,11 @@ var bodyParser             = require('body-parser');
 var User                   = require('./models/user.js');
 var LocalStrategy          = require('passport-local');
 var passportLocalMongoose  = require('passport-local-mongoose');
+var formidable             = require('formidable');
+var csv                    = require('csvtojson')
+
+
+
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/oilbirt',{useMongoClient: true});
@@ -117,6 +122,26 @@ function apiAccess(req, res, next){
 // -------------------------------------------------- //
 // ---------------- API ROUTES ---------------------- //
 // -------------------------------------------------- //
+
+app.post('/contacts/upload_csv', loggedIn, function(req,res){
+  console.log("\n\n\nbody=>",req.body,"\n\n\n");
+  var form = new formidable.IncomingForm();
+
+
+  form.parse(req, function(err, fields, files){
+    if(err) done(err);
+    else if(files && files.file){
+      file = files.file;
+      csv()
+      .fromFile(file.path)
+      .then((jsonObj) => {
+        console.log(jsonObj);
+      })
+    }
+  });
+
+
+});
 
 // var itemsApi = require('./api/items.js');
 
