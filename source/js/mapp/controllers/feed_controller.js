@@ -17,7 +17,6 @@ app.classy.controller({
 
   methods: {
     getContacts: function(init){
-      
       var that = this;
       this.$.d.fetching = true;
       this.$http({
@@ -28,13 +27,40 @@ app.classy.controller({
       .then(function(response) {
         that.$.d.total = response.data.count
         that.$.data.contacts = response.data.rows;
+        that.buildPaginator();
 
         that.$.d.fetching = false;
       }, function(error){
         console.log("error", error);
         that.$.d.fetching = false;
       });
+    },
 
+    changePage: function(data){
+      var that = this;
+      if(data === 'next'){
+        that.$.d.pageNumber++;
+      }
+      else if(data === 'prev' && that.$.d.pageNumber > 2){
+        that.$.d.pageNumber--;
+      }
+      else if(data){
+        that.$.d.pageNumber = data;
+      }
+
+      that.getContacts();
+    },
+
+    buildPaginator: function(){
+      var that = this;
+      var numberOfpages = that.$.d.total/that.$.d.pageSize;
+      var ret = [];
+
+      for(var i = 1; i <= numberOfpages; i++){
+        ret.push(i);
+      }
+      that.$.d.paginator = ret;
     }
+
   }
 });

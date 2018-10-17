@@ -34,32 +34,12 @@
                   .col-sm-6(style="padding:10px 0")
                     #dataTable_paginate.dataTables_paginate.paging_simple_numbers
                       ul.pagination
-                        li#dataTable_previous.paginate_button.page-item.previous.disabled
-                          a.page-link(href='#', aria-controls='dataTable', data-dt-idx='0', tabindex='0') Previous
-                        li.paginate_button.page-item.active
-                          a.page-link(href='#', aria-controls='dataTable', data-dt-idx='1', tabindex='0') 1
-                        li.paginate_button.page-item
-                          a.page-link(href='#', aria-controls='dataTable', data-dt-idx='2', tabindex='0') 2
-                        li.paginate_button.page-item
-                          a.page-link(href='#', aria-controls='dataTable', data-dt-idx='3', tabindex='0') 3
-                        li.paginate_button.page-item
-                          a.page-link(href='#', aria-controls='dataTable', data-dt-idx='4', tabindex='0') 4
-                        li.paginate_button.page-item
-                          a.page-link(href='#', aria-controls='dataTable', data-dt-idx='5', tabindex='0') 5
-                        li.paginate_button.page-item
-                          a.page-link(href='#', aria-controls='dataTable', data-dt-idx='6', tabindex='0') 6
-                        li#dataTable_next.paginate_button.page-item.next
-                          a.page-link(href='#', aria-controls='dataTable', data-dt-idx='7', tabindex='0') Next
+                        li#dataTable_previous.paginate_button.page-item.previous.disabled(ng-click="changePage('prev')")
+                          a.page-link(aria-controls='dataTable', data-dt-idx='0', tabindex='0') Previous
+                        li.paginate_button.page-item(ng-repeat="tick in d.paginator")
+                          a.page-link(ng-click="changePage(tick);", aria-controls='dataTable', data-dt-idx='1', tabindex='0') {{tick}}
+                        li#dataTable_next.paginate_button.page-item.next(ng-click="changePage('next')")
+                          a.page-link(aria-controls='dataTable', data-dt-idx='7', tabindex='0') Next
 
           .card-footer.small.text-muted
             | Updated yesterday at 11:59 PM
-
-        //- div(infinite-scroll='getData()', infinite-scroll-disabled='d.fetching', infinite-scroll-distance='1')
-        //-   .card.mb-3(ng-repeat="data in data.contacts")
-        //-     .card-body
-        //-       h6.card-title.mb-1
-        //-         a(href='#') {{data.name}} 
-        //-       p.card-text.small
-        //-         | {{data.title}}
-        //-     .card-footer.small.text-muted
-        //-       | Posted {{data.updatedAt | date:'short'}}
