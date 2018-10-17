@@ -8,29 +8,33 @@ app.classy.controller({
     this.$.d = {
       fetching:true,
       pageNumber:1,
-      pageSize:5
+      pageSize:10
     };
-    this.$.data = {};
 
+    this.$.data = {};
     this.getContacts(true);
   },
 
   methods: {
     getContacts: function(init){
+      
       var that = this;
       this.$.d.fetching = true;
       this.$http({
         url: "/contacts/list/", 
         method: "GET",
-        params: {pageSize: that.$.d.pageSize, pageNumber:that.$.d.pageNumber}
+        params: {limit: that.$.d.pageSize, pageNumber:that.$.d.pageNumber}
       })
       .then(function(response) {
-        that.$.data.contacts = response.data;
+        that.$.d.total = response.data.count
+        that.$.data.contacts = response.data.rows;
+
         that.$.d.fetching = false;
       }, function(error){
         console.log("error", error);
         that.$.d.fetching = false;
       });
+
     }
   }
 });

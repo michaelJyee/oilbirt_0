@@ -5,7 +5,15 @@ var vasync                 = require('vasync');
 
 
 exports.list = function(req,res){
-  Contacts.findAll()
+  console.log("req.query=>",req.query);
+
+  var params = req.query;
+  
+  var limit = params.limit;
+  var pageNumber = (params.pageNumber-1);
+  var offset = limit * pageNumber;
+
+  Contacts.findAndCountAll({limit: limit, offset: offset, order: [['createdAt','DESC']]})
   .then(contacts => {
     res.send(contacts);
   })
@@ -28,10 +36,6 @@ exports.uploadCSV = function(req,res){
       .fromFile(file.path)
       .then((jsonObj) => {
         vasync.parrell
-
-
-        console.log(jsonObj[0]);
-
         vasync.forEachParallel({
           'func': function(arg, done){
             Contacts.create({name:arg.name, email:arg.email, type:'salesLoft', stage:'A'})
