@@ -6,9 +6,8 @@ module.exports = sequelize.define('Contacts', {
     name: {type: Sequelize.STRING},
     email: {type: Sequelize.STRING},
     type: {type: Sequelize.STRING},
-    stage: {type: Sequelize.DATE}
+    stage: {type: Sequelize.STRING}
   },
   {
-    timestamps: false,
     tableName: 'contacts'
   });

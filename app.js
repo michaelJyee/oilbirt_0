@@ -123,26 +123,6 @@ function apiAccess(req, res, next){
 // ---------------- API ROUTES ---------------------- //
 // -------------------------------------------------- //
 
-app.post('/contacts/upload_csv', loggedIn, function(req,res){
-  console.log("\n\n\nbody=>",req.body,"\n\n\n");
-  var form = new formidable.IncomingForm();
-
-
-  form.parse(req, function(err, fields, files){
-    if(err) done(err);
-    else if(files && files.file){
-      file = files.file;
-      csv()
-      .fromFile(file.path)
-      .then((jsonObj) => {
-        console.log(jsonObj);
-      })
-    }
-  });
-
-
-});
-
 // var itemsApi = require('./api/items.js');
 
 // app.get('/items', itemsApi.list); //Get All Items
@@ -158,10 +138,4 @@ var contactsApi = require('./api/contacts.js');
 
 app.get('/contacts', contactsApi.list);
 
-
-
-
-
-
-
-
+app.post('/contacts/upload_csv', loggedIn, contactsApi.uploadCSV);
