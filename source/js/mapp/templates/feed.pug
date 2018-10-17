@@ -1,19 +1,39 @@
 .container-fluid
   .row
-    div.col-lg-6.col-sm-10.col-centered
+    div.col-lg-8.col-sm-10.col-centered
       .mb-0.mt-4
         i.fa.fa-newspaper-o
         |  Contacts!
       hr.mt-2
       .card-columns
-        div(infinite-scroll='getData()', infinite-scroll-disabled='d.fetching', infinite-scroll-distance='1')
-          .card.mb-3(ng-repeat="data in data.items")
-            a(href='#')
-              img.card-img-top.img-fluid.w-100(ng-src="{{data.imgUrl}}", alt='')
-            .card-body
-              h6.card-title.mb-1
-                a(href='#') {{data.owner.name}} 
-              p.card-text.small
-                | {{data.title}}
-            .card-footer.small.text-muted
-              | Posted {{data.updatedAt | date:'short'}}
+        .card.mb-3
+          .card-header
+            i.fa.fa-table
+            |    Master Contacts Table
+          .card-body(style="padding:0;")
+            .table-responsive
+              table#dataTable.table.table-bordered(width='100%', cellspacing='0')
+                thead
+                  tr
+                    th id
+                    th Name
+                    th Email
+                    th Stage
+                tbody
+                  tr(ng-repeat="data in data.contacts")
+                    td {{data.id}}
+                    td {{data.name}}
+                    td {{data.email}}
+                    td {{data.stage}}
+          .card-footer.small.text-muted
+            | Updated yesterday at 11:59 PM
+
+        //- div(infinite-scroll='getData()', infinite-scroll-disabled='d.fetching', infinite-scroll-distance='1')
+        //-   .card.mb-3(ng-repeat="data in data.contacts")
+        //-     .card-body
+        //-       h6.card-title.mb-1
+        //-         a(href='#') {{data.name}} 
+        //-       p.card-text.small
+        //-         | {{data.title}}
+        //-     .card-footer.small.text-muted
+        //-       | Posted {{data.updatedAt | date:'short'}}
