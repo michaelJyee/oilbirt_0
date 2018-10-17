@@ -136,6 +136,11 @@ app.listen(9999, function () {
 //Contacts
 var contactsApi = require('./api/contacts.js');
 
-app.get('/contacts', contactsApi.list);
-
+app.get('/contacts/list', contactsApi.list);
 app.post('/contacts/upload_csv', loggedIn, contactsApi.uploadCSV);
+
+
+
+
+
+

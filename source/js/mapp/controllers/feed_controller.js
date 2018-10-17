@@ -14,24 +14,21 @@ app.classy.controller({
       items:[]
     };
 
-    // this.getData(true);
+    this.getContacts(true);
   },
 
   methods: {
-    getData: function(init){
+    getContacts: function(init){
       var that = this;
       this.$.d.fetching = true;
       this.$http({
-        url: "/items", 
+        url: "/contacts/list/", 
         method: "GET",
         params: {pageSize: that.$.d.pageSize, pageNumber:that.$.d.pageNumber}
       })
-      .then(function(response) {
-        for(var i = 0; i < response.data.length; i++){
-          that.$.data.items.push(response.data[i]);
-        }
-
-        that.$.d.pageNumber = (that.$.data.items.length/that.$.d.pageSize)+1;
+      .then(function(contacts) {
+        console.log("contacts=>",contacts);
+        // that.$.d.pageNumber = (that.$.data.items.length/that.$.d.pageSize)+1;
         that.$.d.fetching = false;
       }, function(error){
         console.log("error", error);

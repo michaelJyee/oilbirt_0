@@ -5,7 +5,7 @@ var vasync                 = require('vasync');
 
 
 exports.list = function(req,res){
-  Contacts.findAll({})
+  Contacts.findAll()
   .then(contacts => {
     res.send(contacts);
   })
