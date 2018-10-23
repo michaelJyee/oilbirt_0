@@ -15,6 +15,14 @@ app.classy.controller({
     this.getContacts(true);
   },
 
+  watch: {
+    'd.pageNumber': function(old,newVal){
+      console.log($("li.paginate_button.page-item.ng-scope"));
+      console.log("old=>",old);
+      console.log("newVal=>",newVal);
+    }
+  },
+
   methods: {
     getContacts: function(init){
       var that = this;
@@ -36,15 +44,18 @@ app.classy.controller({
       });
     },
 
-    changePage: function(data){
+    changePage: function(data,evt){
       var that = this;
-      if(data === 'next'){
+
+      if(data === 'next' && that.$.d.pageNumber < that.$.d.paginator.length){
         that.$.d.pageNumber++;
       }
       else if(data === 'prev' && that.$.d.pageNumber > 2){
         that.$.d.pageNumber--;
       }
-      else if(data){
+      else if(data && evt){
+        $("li.paginate_button").removeClass("active");
+        evt.target.parentNode.className += " active";
         that.$.d.pageNumber = data;
       }
 
@@ -56,9 +67,10 @@ app.classy.controller({
       var numberOfpages = that.$.d.total/that.$.d.pageSize;
       var ret = [];
 
-      for(var i = 1; i <= numberOfpages; i++){
+      for(var i = 1; i <= numberOfpages+1; i++){
         ret.push(i);
       }
+
       that.$.d.paginator = ret;
     }
 

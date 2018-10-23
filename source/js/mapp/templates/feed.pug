@@ -34,10 +34,10 @@
                   .col-sm-6(style="padding:10px 0")
                     #dataTable_paginate.dataTables_paginate.paging_simple_numbers
                       ul.pagination
-                        li#dataTable_previous.paginate_button.page-item.previous.disabled(ng-click="changePage('prev')")
+                        li#dataTable_previous.paginate_button.page-item.previous(ng-click="changePage('prev')")
                           a.page-link(aria-controls='dataTable', data-dt-idx='0', tabindex='0') Previous
                         li.paginate_button.page-item(ng-repeat="tick in d.paginator")
-                          a.page-link(ng-click="changePage(tick);", aria-controls='dataTable', data-dt-idx='1', tabindex='0') {{tick}}
+                          a.page-link(ng-click="changePage(tick,$event);", aria-controls='dataTable', data-dt-idx='1', tabindex='0') {{tick}}
                         li#dataTable_next.paginate_button.page-item.next(ng-click="changePage('next')")
                           a.page-link(aria-controls='dataTable', data-dt-idx='7', tabindex='0') Next
 
