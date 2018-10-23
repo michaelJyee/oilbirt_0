@@ -2,7 +2,7 @@
 app.classy.controller({
   name: 'feedController',
 
-  inject: ['$scope','$http'],
+  inject: ['$scope','$http','ModalService'],
 
   init: function(){
     this.$.d = {
@@ -60,6 +60,27 @@ app.classy.controller({
       }
 
       that.getContacts();
+    },
+
+
+    editContactModal: function(contact) {
+      var that = this;
+      // Just provide a template url, a controller and call 'showModal'.
+      that.ModalService.showModal({
+        templateUrl: "/js/mapp/templates/editContactModal.html",
+        controller: "editContactModalController",
+        inputs:{
+          contact: contact
+        }
+      }).then(function(modal) {
+        // The modal object has the element built, if this is a bootstrap modal
+        // you can call 'modal' to show it, if it's a custom modal just show or hide
+        // it as you need to.
+        modal.element.modal();
+        modal.close.then(function(result) {
+          $scope.message = result ? "You said Yes" : "You said No";
+        });
+      });
     },
 
     buildPaginator: function(){

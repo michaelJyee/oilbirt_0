@@ -24,7 +24,7 @@ app.use(require("express-session")({
 
 
 app.set('view engine', 'pug');
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(express.static('assets'));
 
@@ -138,6 +138,8 @@ var contactsApi = require('./api/contacts.js');
 
 app.get('/contacts/list', contactsApi.list);
 app.post('/contacts/upload_csv', loggedIn, contactsApi.uploadCSV);
+
+app.post('/contact/edit', contactsApi.editContact)
 
 
 

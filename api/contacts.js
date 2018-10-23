@@ -58,3 +58,24 @@ exports.uploadCSV = function(req,res){
     }
   });
 }
+
+
+
+exports.editContact = function(req,res){
+  var contact = req.body.contact;
+  Contacts.update(
+    {
+      name: contact.name,
+      email: contact.email,
+      stage: contact.stage
+    },
+    {
+      where: {id: contact.id},
+      returning: true,
+      plain: true
+    }
+  )
+  .then(function(updatedContact){
+    res.send(200);
+  });
+}
