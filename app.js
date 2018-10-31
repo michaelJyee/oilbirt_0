@@ -130,7 +130,7 @@ function apiAccess(req, res, next){
 // app.delete('/delete_item', apiAccess, itemsApi.destroy); //Delete Item
 
 app.listen(9999, function () {
-  console.log('Example app listening on port 9999!')
+  console.log('Example app listening on port 9999!');
 });
 
 //Contacts
@@ -139,7 +139,8 @@ var contactsApi = require('./api/contacts.js');
 app.get('/contacts/list', contactsApi.list);
 app.post('/contacts/upload_csv', loggedIn, contactsApi.uploadCSV);
 
-app.post('/contact/edit', contactsApi.editContact)
+app.post('/contact/edit', contactsApi.editContact);
+app.post('/contact/destroy', contactsApi.destroyContact);
 
 
 

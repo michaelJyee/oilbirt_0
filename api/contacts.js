@@ -1,12 +1,10 @@
 var formidable             = require('formidable');
-var csv                    = require('csvtojson')
+var csv                    = require('csvtojson');
 var Contacts               = require('../models/sql/contacts.js');
 var vasync                 = require('vasync');
 
-
 exports.list = function(req,res){
-  console.log("req.query=>",req.query);
-
+  // console.log("req.query=>",req.query);
   var params = req.query;
   
   var limit = params.limit;
@@ -20,8 +18,8 @@ exports.list = function(req,res){
   .catch(function (err) {
     console.log("models/contacts.js#list",err);
     res.send(500);
-  })
-}
+  });
+};
 
 exports.uploadCSV = function(req,res){
   var form = new formidable.IncomingForm();
@@ -35,31 +33,35 @@ exports.uploadCSV = function(req,res){
       csv()
       .fromFile(file.path)
       .then((jsonObj) => {
-        vasync.parrell
         vasync.forEachParallel({
           'func': function(arg, done){
             Contacts.create({name:arg.name, email:arg.email, type:'salesLoft', stage:'A'})
-            .then((results)=>{
-              console.log("\n\n\nresults=>",results,"\n\n\n");
+            .then((results) => {
               done();
-            })
+            });
 
           },
           'inputs': jsonObj
           }, function (err, results) {
             res.send(200);
         });
-
-
-      })
+      });
     }
     else{
       res.send(500);
     }
   });
-}
+};
 
-
+exports.destroyContact = function(req,res){
+  var contact = req.body.data;
+  console.log(contact);
+  Contacts.destroy({where:{id:contact.id}})
+  .then(data => {
+    console.log("deleted=>", contact);
+    res.send(200);
+  });
+};
 
 exports.editContact = function(req,res){
   var contact = req.body.contact;
@@ -78,4 +80,4 @@ exports.editContact = function(req,res){
   .then(function(updatedContact){
     res.send(200);
   });
-}
+};

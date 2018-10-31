@@ -36,7 +36,7 @@
                           td 
                             button(ng-click="editContactModal(data)") edit
                           td
-                            button delete
+                            button(ng-click="destroy(data, $index)") delete
                 .row
                   .col-sm-6(style="padding:10px 0")
                     #dataTable_paginate.dataTables_paginate.paging_simple_numbers

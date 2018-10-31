@@ -8,13 +8,13 @@
       .modal-body
         div(class="form-group")
           label name
-          input(ng-model="d.contact.name" class="form-control" placeholder="Title")
+          input(ng-model="contact.name" class="form-control" placeholder="Title")
           br
           label Email
-          input(ng-model="d.contact.email" class="form-control" placeholder="Title")
+          input(ng-model="contact.email" class="form-control" placeholder="Title")
           br
           label Stage
-          input(ng-model="d.contact.stage" class="form-control" placeholder="Title")
+          input(ng-model="contact.stage" class="form-control" placeholder="Title")
       .modal-footer
-        button.btn.btn-secondary(type='button' data-dismiss='modal' ng-click="close(false)" style="cursor:pointer;") Cancel
+        button.btn.btn-secondary(type='button' data-dismiss='modal' style="cursor:pointer;") Cancel
         button.btn.btn-primary(ng-click="save()" style="cursor:pointer;") Update

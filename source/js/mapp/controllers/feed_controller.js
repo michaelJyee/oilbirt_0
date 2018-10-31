@@ -33,7 +33,7 @@ app.classy.controller({
         params: {limit: that.$.d.pageSize, pageNumber:that.$.d.pageNumber}
       })
       .then(function(response) {
-        that.$.d.total = response.data.count
+        that.$.d.total = response.data.count;
         that.$.data.contacts = response.data.rows;
         that.buildPaginator();
 
@@ -41,6 +41,14 @@ app.classy.controller({
       }, function(error){
         console.log("error", error);
         that.$.d.fetching = false;
+      });
+    },
+
+    destroy: function(data, idx){
+      var that = this;
+      this.$http.post('/contact/destroy',{data:data})
+      .then(function(data){
+        that.$.data.contacts.splice(idx,1);
       });
     },
 
@@ -78,7 +86,7 @@ app.classy.controller({
         // it as you need to.
         modal.element.modal();
         modal.close.then(function(result) {
-          $scope.message = result ? "You said Yes" : "You said No";
+          console.log("RESULT",result);
         });
       });
     },

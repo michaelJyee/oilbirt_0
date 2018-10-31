@@ -1,14 +1,16 @@
 //INIT CONTROLLER
 app.classy.controller({
   name: 'editContactModalController',
-  inject: ['$scope','$http', 'contact'],
+  inject: ['$scope','$http', '$element', 'contact', 'close'],
 
   init: function(){
-    this.$.d = {
-      contact: this.contact
-    };
-    this.$.data = {};
-    console.log("find it!",this.contact);
+    var contact = this.contact;
+    this.$.contact = {
+      id: contact.id,
+      name: contact.name,
+      email: contact.email,
+      stage: contact.stage
+    }
   },
 
   methods:{
@@ -21,10 +23,11 @@ app.classy.controller({
           'Content-Type':'application/json'
         },
         method: "post",
-        data: {contact: this.$.d.contact}
+        data: {contact: that.$.contact}
       })
       .then(function(response) {
-        console.log("updated");
+        that.$element.modal('hide')[0].removeClass('show');
+        that.close();
       }, function(error){
         that.$.d.fetching = false;
       });
