@@ -86,7 +86,9 @@ app.classy.controller({
         // it as you need to.
         modal.element.modal();
         modal.close.then(function(result) {
-          console.log("RESULT",result);
+          contact.name = result.contact.name;
+          contact.email = result.contact.email;
+          contact.stage = result.contact.stage;
         });
       });
     },

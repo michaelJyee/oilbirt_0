@@ -78,6 +78,7 @@ exports.editContact = function(req,res){
     }
   )
   .then(function(updatedContact){
-    res.send(200);
+    var ret = updatedContact[1];
+    res.json(ret);
   });
 };
