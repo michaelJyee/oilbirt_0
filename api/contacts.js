@@ -2,16 +2,22 @@ var formidable             = require('formidable');
 var csv                    = require('csvtojson');
 var Contacts               = require('../models/sql/contacts.js');
 var vasync                 = require('vasync');
+var Sequelize            = require('sequelize');
 
 exports.list = function(req,res){
-  // console.log("req.query=>",req.query);
   var params = req.query;
   
   var limit = params.limit;
   var pageNumber = (params.pageNumber-1);
   var offset = limit * pageNumber;
+  var where = {};
 
-  Contacts.findAndCountAll({limit: limit, offset: offset, order: [['createdAt','DESC']]})
+  if(req.query.search){
+    var search = `%${req.query.search}%`;
+    where = {name:{$ilike:search}};
+  }
+
+  Contacts.findAndCountAll({where:where, limit: limit, offset: offset, order: [['createdAt','DESC']]})
   .then(contacts => {
     res.send(contacts);
   })

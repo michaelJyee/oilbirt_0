@@ -16,7 +16,7 @@ app.classy.controller({
   },
 
   watch: {
-    'd.pageNumber': function(old,newVal){
+    'd.pageNumber': function(old, newVal){
       console.log($("li.paginate_button.page-item.ng-scope"));
       console.log("old=>",old);
       console.log("newVal=>",newVal);
@@ -24,13 +24,31 @@ app.classy.controller({
   },
 
   methods: {
+    searchFor: function(){
+      var that = this;
+      that.$http({
+        url: "/contacts/list/", 
+        method: "GET",
+        params: {limit: that.$.d.pageSize, pageNumber:that.$.d.pageNumber, search: that.$.d.search}
+      })
+      .then(function(response) {
+        that.$.d.total = response.data.count;
+        that.$.data.contacts = response.data.rows;
+        that.buildPaginator();
+
+        that.$.d.fetching = false;
+      }, function(error){
+        console.log("error", error);
+        that.$.d.fetching = false;
+      });
+    },
     getContacts: function(init){
       var that = this;
       this.$.d.fetching = true;
       this.$http({
         url: "/contacts/list/", 
         method: "GET",
-        params: {limit: that.$.d.pageSize, pageNumber:that.$.d.pageNumber}
+        params: {limit: that.$.d.pageSize, pageNumber:that.$.d.pageNumber, search: that.$.d.search}
       })
       .then(function(response) {
         that.$.d.total = response.data.count;

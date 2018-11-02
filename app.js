@@ -39,15 +39,15 @@ passport.deserializeUser(User.deserializeUser());
 app.use(function(req,res,next){
   res.locals.userConfig = JSON.stringify(req.user||{});
   next();
-})
+});
 
 // Auth Routes
 app.get('/', function (req, res) {
-  res.redirect('/index/')
+  res.redirect('/index/');
 });
 
 app.get('/secret', loggedIn, function (req, res) {
-  res.render('secret')
+  res.render('secret');
 });
 
 //Handling User Sign Up

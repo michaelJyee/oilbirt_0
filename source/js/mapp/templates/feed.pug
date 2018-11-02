@@ -8,8 +8,8 @@
       .card-columns
         .card.mb-3
           .card-header
-            i.fa.fa-table
-            |    Master Contacts Table
+            div.input-group
+              input.form-control(ng-model="d.search" type="text" ng-model-options="{debounce:1200}" ng-change="searchFor()" placeholder="Search for...")
           .card-body(style="padding:0;")
             .table-responsive
               #dataTable_wrapper(style="padding:0;").dataTables_wrapper.container-fluid.dt-bootstrap4
