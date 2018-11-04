@@ -9,10 +9,12 @@
         .card.mb-3
           .card-header
             div.row
-              div.col-sm-6
+              div.col-sm-4
+                div
+                  label Search:
                 div.input-group
                   input.form-control(ng-model="d.search" type="text" ng-model-options="{debounce:1200}" ng-change="searchFor()" placeholder="Search for...")
-              div.col-sm-6
+              div.col-sm-4
                 div
                   label Stage:
                   .dropdown
