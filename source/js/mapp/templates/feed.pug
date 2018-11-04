@@ -8,8 +8,18 @@
       .card-columns
         .card.mb-3
           .card-header
-            div.input-group
-              input.form-control(ng-model="d.search" type="text" ng-model-options="{debounce:1200}" ng-change="searchFor()" placeholder="Search for...")
+            div.row
+              div.col-sm-6
+                div.input-group
+                  input.form-control(ng-model="d.search" type="text" ng-model-options="{debounce:1200}" ng-change="searchFor()" placeholder="Search for...")
+              div.col-sm-6
+                div
+                  label Stage:
+                  .dropdown
+                    button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(style="cursor: pointer;", type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') {{(d.filterStage) ? d.filterStage : "Any Stage"}}
+                    .dropdown-menu(aria-labelledby='dropdownMenuButton')
+                      a.dropdown-item(style="cursor: pointer;", ng-repeat="stage in d.stages", ng-click="filterStage(stage)") {{stage}}
+                      a.dropdown-item(style="cursor: pointer;", ng-click="filterStage(\"any\")") Any Stage
           .card-body(style="padding:0;")
             .table-responsive
               #dataTable_wrapper(style="padding:0;").dataTables_wrapper.container-fluid.dt-bootstrap4

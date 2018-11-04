@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */ 
 var formidable             = require('formidable');
 var csv                    = require('csvtojson');
 var Contacts               = require('../models/sql/contacts.js');
@@ -16,6 +17,8 @@ exports.list = function(req,res){
     var search = `%${req.query.search}%`;
     where = {name:{$ilike:search}};
   }
+
+  if(req.query.filterStage) where.stage = req.query.filterStage;
 
   Contacts.findAndCountAll({where:where, limit: limit, offset: offset, order: [['createdAt','DESC']]})
   .then(contacts => {

@@ -6,6 +6,7 @@ app.classy.controller({
 
   init: function(){
     this.$.d = {
+      stages: ['A','B','C','D'],
       fetching:true,
       pageNumber:1,
       pageSize:10
@@ -16,20 +17,24 @@ app.classy.controller({
   },
 
   watch: {
-    'd.pageNumber': function(old, newVal){
+    'd.pageNumber': function(oldVal, newVal){
       console.log($("li.paginate_button.page-item.ng-scope"));
-      console.log("old=>",old);
+      console.log("oldVal=>",oldVal);
       console.log("newVal=>",newVal);
+    },
+    'd.filterStage': function(oldVal, newVal){
+      if(newVal !== oldVal) this.searchFor();
     }
   },
 
   methods: {
     searchFor: function(){
       var that = this;
+
       that.$http({
         url: "/contacts/list/", 
         method: "GET",
-        params: {limit: that.$.d.pageSize, pageNumber:that.$.d.pageNumber, search: that.$.d.search}
+        params: {limit: that.$.d.pageSize, pageNumber:that.$.d.pageNumber, search: that.$.d.search, filterStage:that.$.d.filterStage }
       })
       .then(function(response) {
         that.$.d.total = response.data.count;
@@ -88,6 +93,10 @@ app.classy.controller({
       that.getContacts();
     },
 
+    filterStage: function(stage){
+      if(stage === "any") delete this.$.d.filterStage;
+      else this.$.d.filterStage = stage;
+    },
 
     editContactModal: function(contact) {
       var that = this;
