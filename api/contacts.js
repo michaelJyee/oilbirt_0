@@ -44,11 +44,10 @@ exports.uploadCSV = function(req,res){
       .then((jsonObj) => {
         vasync.forEachParallel({
           'func': function(arg, done){
-            Contacts.create({name:arg.name, email:arg.email, type:'salesLoft', stage:'A'})
-            .then((results) => {
+            var contactObj = {name:arg.name, email:arg.email, type:'salesLoft', stage:'A'};
+            _upsertContact(contactObj, function(err,data){
               done();
             });
-
           },
           'inputs': jsonObj
           }, function (err, results) {
@@ -91,3 +90,24 @@ exports.editContact = function(req,res){
     res.json(ret);
   });
 };
+
+// Helper functions
+
+//OverRide All
+function _upsertContact(contactUp, cb){
+  var that = this;
+  Contacts.findOne({where:{email:contactUp.email}})
+  .then((contact) => {
+    if(contact){
+      contact.update(contactUp).then((results) => {
+        cb();
+      });
+    }
+    else{
+      Contacts.create(contactUp)
+      .then((results) => {
+        cb();
+      });
+    }
+  });
+}

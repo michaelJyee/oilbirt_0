@@ -1,4 +1,4 @@
-/*jshint esversion: 6 */ 
+/*jshint esversion: 6 */
 //INIT CONTROLLER
 app.classy.controller({
   name: 'uploadContactListModelController',

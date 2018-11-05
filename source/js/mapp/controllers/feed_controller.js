@@ -76,7 +76,6 @@ app.classy.controller({
 
     changePage: function(data,evt){
       var that = this;
-
       if(data === 'next' && that.$.d.pageNumber < that.$.d.paginator.length){
         that.$.d.pageNumber++;
       }

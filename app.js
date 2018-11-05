@@ -1,5 +1,6 @@
-const express   = require('express');
-const app       = express();
+/*jshint esversion: 6 */
+const express             = require('express');
+const app                 = express();
 
 var mongoose               = require('mongoose');
 var passport               = require('passport');
@@ -8,7 +9,7 @@ var User                   = require('./models/user.js');
 var LocalStrategy          = require('passport-local');
 var passportLocalMongoose  = require('passport-local-mongoose');
 var formidable             = require('formidable');
-var csv                    = require('csvtojson')
+var csv                    = require('csvtojson');
 
 
 
@@ -141,9 +142,4 @@ app.post('/contacts/upload_csv', loggedIn, contactsApi.uploadCSV);
 
 app.post('/contact/edit', contactsApi.editContact);
 app.post('/contact/destroy', contactsApi.destroyContact);
-
-
-
-
-
 
