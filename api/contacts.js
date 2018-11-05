@@ -3,7 +3,7 @@ var formidable             = require('formidable');
 var csv                    = require('csvtojson');
 var Contacts               = require('../models/sql/contacts.js');
 var vasync                 = require('vasync');
-var Sequelize            = require('sequelize');
+var Sequelize              = require('sequelize');
 
 exports.list = function(req,res){
   var params = req.query;

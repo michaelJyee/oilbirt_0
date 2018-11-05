@@ -1,16 +1,42 @@
+/*jshint esversion: 6 */ 
 //INIT CONTROLLER
 app.classy.controller({
   name: 'uploadContactListModelController',
-  inject: ['$scope','$http'],
+  inject: ['$scope','$http','close'],
 
   init: function(){
-    this.$.d = {};
+    this.$.btnClass = ['btn-info'];
+    this.$.d = {
+      conflictOptions: ['Force','File Date','No Upsert'],
+      conflictOption: 'No Update'
+    };
+
     this.$.data = {};
   },
 
   methods:{
     upload: function(){
       $('#upload-file').click();
+    },
+
+    selectConflict: function(option){
+      var that = this;
+
+      if(that.$.d.conflictOptions.indexOf(option) > -1){
+        that.$.d.conflictOption = option;
+      }
+
+      switch(that.$.d.conflictOptions.indexOf(option)) {
+        case 0: 
+          that.$.btnClass[0] = 'btn-danger';
+          break;
+        case 1: 
+          that.$.btnClass[0] = 'btn-warning';
+          break;
+        case 2:
+          that.$.btnClass[0] = 'btn-info';
+          break;
+      }
     },
 
     parseFile: function(file){
@@ -68,10 +94,9 @@ app.classy.controller({
         params: params,
         tracker: "loading"
       })
-      .then((data)=>{
-        console.log(data);
-      })
-
+      .then((data) => {
+        that.close();
+      });
     },
 
     cancel: function(){

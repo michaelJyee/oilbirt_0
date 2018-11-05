@@ -1,7 +1,6 @@
 //FEED CONTROLLER
 app.classy.controller({
   name: 'feedController',
-
   inject: ['$scope','$http','ModalService'],
 
   init: function(){

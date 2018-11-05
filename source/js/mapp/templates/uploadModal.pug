@@ -17,21 +17,24 @@
         div(class="form-group")
           label Title
           input(ng-model="d.title"  class="form-control" placeholder="Title")
-          br
+          hr
           label Contact File List
           div.panel-body
             button.btn.btn-primary.upload-btn(ng-click="upload()") upload
             span(style="vertical-align: bottom;text-decoration: underline;margin-left: 10px;") {{d.file.name}}
             input#upload-file(type='file', onChange="angular.element(this).scope().parseFile(this.files[0])" name='upload-file', multiple='')
-          br
+            hr
+            label conflict options
+            .dropdown
+              button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(style="cursor: pointer;", ng-class="btnClass", type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') {{d.conflictOption}}
+              .dropdown-menu(aria-labelledby='dropdownMenuButton')
+                a.dropdown-item(style="cursor: pointer;", ng-repeat="option in d.conflictOptions", ng-click="selectConflict(option)") {{option}}
           div(ng-if="false")
             label Select
             div
               select
                 option(ng-repeat="col in data.columns", value="{{$index}}") {{col}}
             br
-          small(id="emailHelp" class="form-text text-muted") I dont have any money
-        
       .modal-footer
         button.btn.btn-secondary(type='button' data-dismiss='modal' ng-click="close(false)" style="cursor:pointer;") Cancel
         button.btn.btn-primary(ng-disabled="!d.title || !d.file" ng-click="save()" style="cursor:pointer;") Save
