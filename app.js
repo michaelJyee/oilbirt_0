@@ -124,12 +124,6 @@ function apiAccess(req, res, next){
 // ---------------- API ROUTES ---------------------- //
 // -------------------------------------------------- //
 
-// var itemsApi = require('./api/items.js');
-
-// app.get('/items', itemsApi.list); //Get All Items
-// app.post('/add_item', apiAccess, itemsApi.create); // SAVE Item
-// app.delete('/delete_item', apiAccess, itemsApi.destroy); //Delete Item
-
 app.listen(9999, function () {
   console.log('Example app listening on port 9999!');
 });

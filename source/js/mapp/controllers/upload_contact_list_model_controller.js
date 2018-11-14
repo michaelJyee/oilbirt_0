@@ -80,11 +80,14 @@ app.classy.controller({
     },
 
     save: function() {
+      console.log("YEAH");
       var that = this;
       var params = {
+        conflictOption: this.$.d.conflictOption,
         title: this.$.d.title,
         file: this.$.d.file
       };
+
 
 
       this.$http.post("/contacts/upload_csv", that.$.fd, {
