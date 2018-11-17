@@ -11,9 +11,6 @@ var passportLocalMongoose  = require('passport-local-mongoose');
 var formidable             = require('formidable');
 var csv                    = require('csvtojson');
 
-
-
-
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/oilbirt',{useMongoClient: true});
 

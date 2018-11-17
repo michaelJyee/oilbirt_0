@@ -16,4 +16,8 @@ app.config(function($locationProvider,$routeProvider) {
       templateUrl : "/js/mapp/templates/user.html",
       controller : "feedController"
     })
+    .when("/lists", {
+      templateUrl : "/js/mapp/templates/lists.html",
+      controller : "listsController"
+    });
 });

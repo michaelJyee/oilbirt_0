@@ -22,8 +22,8 @@ html(lang='en', ng-app="myApp")
           a.nav-link(ng-click="uploadModal()")
             i.fa.fa-fw.fa-upload
         li.nav-item(ng-show="currentUser._id")
-          a.nav-link(data-toggle='modal', data-target='#')
-            i.fa.fa-fw.fa-heart
+          a.nav-link(href="/index/lists")
+            i.fa.fa-fw.fa-beer
         li.nav-item(ng-show="currentUser._id")
           a.nav-link(ng-click="logoutModal()")
             i.fa.fa-fw.fa-user
