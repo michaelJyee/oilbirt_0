@@ -1,0 +1,14 @@
+.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title Create New List
+        button.close(type='button', ng-click='close(false)', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') ×
+      .modal-body
+        div(class="form-group")
+          label name
+          input(ng-model="d.listName" class="form-control" placeholder="Title")
+      .modal-footer
+        button.btn.btn-secondary(type='button' data-dismiss='modal' style="cursor:pointer;") Cancel
+        button.btn.btn-primary(ng-click="save()" style="cursor:pointer;") Save

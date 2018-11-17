@@ -1,0 +1,20 @@
+.container-fluid
+  .row
+    div.col-lg-8.col-sm-10.col-centered
+      .mb-0.mt-4
+        i.fa.fa-newspaper-o
+        |  Lists!
+      hr.mt-2
+      .card-columns
+        .card.mb-3
+          .card-header
+            div.row
+              div.col-sm-4
+                button.btn.btn-success(style="cursor:pointer;", ng-click="newList()") New List
+          .list-group.list-group-flush.small(ng-repeat="list in d.lists")
+            a.list-group-item
+              div.media
+                div.media-body
+                  strong {{list.name}} 
+                  | posted a new article to
+                  .text-muted.smaller {{list.updatedAt}}

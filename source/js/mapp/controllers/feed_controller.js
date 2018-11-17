@@ -18,8 +18,6 @@ app.classy.controller({
   watch: {
     'd.pageNumber': function(oldVal, newVal){
       console.log($("li.paginate_button.page-item.ng-scope"));
-      console.log("oldVal=>",oldVal);
-      console.log("newVal=>",newVal);
     },
     'd.filterStage': function(oldVal, newVal){
       if(newVal !== oldVal) this.searchFor();

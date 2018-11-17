@@ -134,3 +134,16 @@ app.post('/contacts/upload_csv', loggedIn, contactsApi.uploadCSV);
 app.post('/contact/edit', contactsApi.editContact);
 app.post('/contact/destroy', contactsApi.destroyContact);
 
+//Lists
+var listsApi = require('./api/lists.js');
+
+app.post('/api/list', listsApi.newLists);
+app.get('/api/lists', listsApi.getLists);
+
+
+
+
+
+
+
+
