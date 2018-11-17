@@ -11,8 +11,8 @@
             div.row
               div.col-sm-4
                 button.btn.btn-success(style="cursor:pointer;", ng-click="newList()") New List
-          .list-group.list-group-flush.small(ng-repeat="list in d.lists")
-            a.list-group-item
+          .list-group.list-group-flush.small(ng-repeat="list in d.lists", style="cursor:pointer")
+            a.list-group-item.list-group-item-action
               div.media
                 div.media-body
                   strong {{list.name}} 
