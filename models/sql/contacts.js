@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */ 
 const Sequelize = require('sequelize');
 const sequelize = require('../../lib/sql.js');
 
