@@ -15,9 +15,9 @@ app.classy.controller({
       that.$http.post('/api/list', {name: that.$.d.listName})
       .then(function(response){
         var elem = document.getElementsByClassName('modal-backdrop')[0];
-
         elem.remove("show");
-        that.close({contact:"YAY"});
+
+        that.close({list:response.data});
       });
     },
     cancel: function(){

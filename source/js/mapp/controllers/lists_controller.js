@@ -29,7 +29,8 @@ app.classy.controller({
       .then(function(modal) {
         modal.element.modal();
         modal.close.then(function(result) {
-          console.log("Lists edit page");
+          console.log(result);
+          that.$.d.lists.push(result.list);
         });
       });
     }
