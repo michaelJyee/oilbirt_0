@@ -1,0 +1,25 @@
+.container-fluid
+  .row
+    div.col-lg-8.col-sm-10.col-centered
+      .mb-0.mt-4
+        i.fa.fa-newspaper-o
+        |  Edit
+        strong  {{d.list.name}}
+      hr.mt-2
+      .card-columns
+  .row(style="min-height:300px;")
+    div.col-lg-8.col-centered
+      .card-columns
+          .card.mb-3
+            .card-header
+              div.row
+                div.col-sm-4
+                  button.btn.btn-success(style="cursor:pointer;", ng-click="newQuery()") Add Parmeter
+            .list-group.list-group-flush.small(style="min-height:100px;")
+              div(style="text-align: center;", ng-click="newQuery()")
+                button.btn.btn-primary(style="margin-top:25px; cursor:pointer;") Add A Parameter!
+              //- a.list-group-item.list-group-item-action
+              //-   div.media
+              //-     div.media-body
+              //-       strong hello
+              //-       .text-muted.smaller today mitch

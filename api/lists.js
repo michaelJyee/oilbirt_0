@@ -14,7 +14,19 @@ exports.newLists = function(req, res){
 exports.getLists = function(req, res){
   Lists.findAndCountAll({})
   .then(function(data){
-    console.log("YO=>",data);
     res.send(data);
+  })
+  .catch(function(err){
+    res.send(400);
+  });
+};
+
+exports.getList = function(req, res){
+  Lists.findOne({where:{id:req.params.id}})
+  .then(function(data){
+    res.send(data);
+  })
+  .catch(function(err){
+    res.send(400);
   });
 };

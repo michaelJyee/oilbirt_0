@@ -19,5 +19,9 @@ app.config(function($locationProvider,$routeProvider) {
     .when("/lists", {
       templateUrl : "/js/mapp/templates/lists.html",
       controller : "listsController"
+    })
+    .when("/lists/edit/:id", {
+      templateUrl : "/js/mapp/templates/editLists.html",
+      controller : "editListsController"
     });
 });

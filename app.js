@@ -139,6 +139,7 @@ var listsApi = require('./api/lists.js');
 
 app.post('/api/list', listsApi.newLists);
 app.get('/api/lists', listsApi.getLists);
+app.get('/api/list/:id', listsApi.getList);
 
 
 
