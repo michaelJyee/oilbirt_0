@@ -5,8 +5,10 @@ app.classy.controller({
 
   init: function(){
     var that = this;
-    this.$.d = {};
-    this.$.data = {};
+    this.$.d = {
+      fields: ['name','email','stage']
+    };
+
     this.getList();
   },
 
@@ -18,11 +20,19 @@ app.classy.controller({
       that.$http.get('/api/list/'+that.$routeParams.id)
       .then(function(success){
         that.$.d.list = success.data;
+        that.$.d.list.querymodel = JSON.parse(that.$.d.list.querymodel);
       });
     },
 
     newQuery: function(){
-       console.log("new query parameter");
+      var that = this;
+      var newParam = {};
+      that.$.d.list.querymodel.push(newParam);
+    },
+
+    remove: function(index){
+      var that = this;
+      that.$.d.list.querymodel.splice(index, 1);
     }
   }
 });

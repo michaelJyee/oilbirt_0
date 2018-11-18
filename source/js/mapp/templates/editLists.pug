@@ -16,10 +16,32 @@
                 div.col-sm-4
                   button.btn.btn-success(style="cursor:pointer;", ng-click="newQuery()") Add Parmeter
             .list-group.list-group-flush.small(style="min-height:100px;")
-              div(style="text-align: center;", ng-click="newQuery()")
+              div(style="text-align: center;", ng-click="newQuery()", ng-if="!(d.list.querymodel.length > 0)")
                 button.btn.btn-primary(style="margin-top:25px; cursor:pointer;") Add A Parameter!
-              //- a.list-group-item.list-group-item-action
-              //-   div.media
-              //-     div.media-body
-              //-       strong hello
-              //-       .text-muted.smaller today mitch
+              div(style="text-align: center;", ng-if="(d.list.querymodel.length > 0)")
+                a.list-group-item.list-group-item-action(ng-repeat="param in d.list.querymodel")
+                  div.media
+                    div.media-body
+                      .row
+                        .col-sm-3.form-group(style="text-align:left;")
+                          label Field:
+                          select.form-control(ng-model="d.list.querymodel[$index].field")
+                            option(value="email") email
+                            option(value="name") name
+                            option(value="stage") stage
+                        
+                        //- opperators if email or name
+                        .col-sm-3.form-group(style="text-align:left;", ng-if="param.field === 'email' || param.field === 'name'")
+                          label Opperator:
+                          select.form-control(ng-model="d.list.querymodel[$index].opp")
+                            option(value="EQ") equals
+                            option(value="NOT EQ") not equal
+                            option(value="CONTAINS") contains
+                            option(value="NOT CONTAINS") does not contain
+
+                        //- text value inpute
+                        .col-sm-5.form-group(style="text-align:left;", ng-if="(param.field === 'email' || param.field === 'name') && param.opp")
+                          label value:
+                          input.form-control(ng-model="d.list.querymodel[$index].value")
+                        .col-sm-1(style="padding-top:26px;")
+                          i.fa.fa-trash(style="font-size:33px; color:red; cursor:pointer;", ng-click="remove($index);")

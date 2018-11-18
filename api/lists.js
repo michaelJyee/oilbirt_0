@@ -1,9 +1,8 @@
 var Lists = require('../models/sql/lists.js');
 
 exports.newLists = function(req, res){
-  Lists.create({name:req.body.name})
+  Lists.create({name:req.body.name, querymodel: "[]"})
   .then(function(list){
-    console.log("list=>",list);
     res.send(list);
   })
   .catch(function(err){
