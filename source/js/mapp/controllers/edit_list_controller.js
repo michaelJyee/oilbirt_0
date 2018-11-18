@@ -12,7 +12,13 @@ app.classy.controller({
     this.getList();
   },
 
-  watch: {},
+  watch: {
+    '{object}d.list' : function(oldVal, newVal){
+      if(oldVal != newVal){
+        console.log(newVal);
+      }
+    }
+  },
 
   methods: {
     getList: function(){

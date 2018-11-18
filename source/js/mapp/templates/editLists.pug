@@ -16,8 +16,6 @@
                 div.col-sm-4
                   button.btn.btn-success(style="cursor:pointer;", ng-click="newQuery()") Add Parmeter
             .list-group.list-group-flush.small(style="min-height:100px;")
-              div(style="text-align: center;", ng-click="newQuery()", ng-if="!(d.list.querymodel.length > 0)")
-                button.btn.btn-primary(style="margin-top:25px; cursor:pointer;") Add A Parameter!
               div(style="text-align: center;", ng-if="(d.list.querymodel.length > 0)")
                 a.list-group-item.list-group-item-action(ng-repeat="param in d.list.querymodel")
                   div.media
@@ -45,3 +43,5 @@
                           input.form-control(ng-model="d.list.querymodel[$index].value")
                         .col-sm-1(style="padding-top:26px;")
                           i.fa.fa-trash(style="font-size:33px; color:red; cursor:pointer;", ng-click="remove($index);")
+              div(style="text-align: center; height:100px;")
+                button.btn.btn-primary(ng-click="newQuery()", style="margin-top:25px; cursor:pointer;") Add A Parameter!
