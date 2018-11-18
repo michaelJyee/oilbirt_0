@@ -14,13 +14,21 @@ app.classy.controller({
 
   watch: {
     '{object}d.list' : function(oldVal, newVal){
-      if(oldVal != newVal){
-        console.log(newVal);
+      if(oldVal != newVal && (newVal) ){
+        this.updateList();
       }
     }
   },
 
   methods: {
+    updateList: function(){
+      var that = this;
+      that.$http.post('/api/list/'+that.$routeParams.id, {list:that.$.d.list})
+      .then(function(success){
+        console.log("LIST=>", success);
+      });
+    },
+
     getList: function(){
       var that = this;
       that.$http.get('/api/list/'+that.$routeParams.id)
@@ -33,7 +41,9 @@ app.classy.controller({
     newQuery: function(){
       var that = this;
       var newParam = {};
-      that.$.d.list.querymodel.push(newParam);
+      if(that.$.d.list.querymodel[that.$.d.list.querymodel.length-1].value){
+        that.$.d.list.querymodel.push(newParam);
+      }
     },
 
     remove: function(index){

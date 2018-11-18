@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
-const express             = require('express');
-const app                 = express();
+const express              = require('express');
+const app                  = express();
 
 var mongoose               = require('mongoose');
 var passport               = require('passport');
@@ -140,6 +140,7 @@ var listsApi = require('./api/lists.js');
 app.post('/api/list', listsApi.newLists);
 app.get('/api/lists', listsApi.getLists);
 app.get('/api/list/:id', listsApi.getList);
+app.post('/api/list/:id', listsApi.updateList);
 
 
 

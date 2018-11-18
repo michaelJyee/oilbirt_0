@@ -29,3 +29,23 @@ exports.getList = function(req, res){
     res.send(400);
   });
 };
+
+exports.updateList = function(req, res){
+  try{
+    var queryData = JSON.stringify(req.body.list.querymodel);
+    Lists.update(
+      {querymodel:queryData},
+      {where:{id:req.body.list.id}})
+    .then(function(data){
+      res.send(data);
+    })
+    .catch(function(err){
+      console.log("failed to update",err);
+      res.send(400);
+    });
+  }
+  catch(err){
+    console.log("Error failed to parse", err);
+    res.send(400);
+  }
+};
