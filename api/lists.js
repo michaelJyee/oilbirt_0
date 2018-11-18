@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */ 
 var Lists = require('../models/sql/lists.js');
 
 exports.newLists = function(req, res){
@@ -48,4 +49,20 @@ exports.updateList = function(req, res){
     console.log("Error failed to parse", err);
     res.send(400);
   }
+};
+
+exports.execute = function(req, res){
+  Lists.findOne({where:{id:req.params.id}})
+    .then(function(data){
+      var q = JSON.parse(data.querymodel);
+      q.forEach(function(param){
+        console.log(param);
+      });
+
+      res.send(data);
+    })
+    .catch(function(err){
+      console.log(err);
+      res.send(400);
+  });
 };

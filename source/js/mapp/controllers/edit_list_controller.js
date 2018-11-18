@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */ 
 //FEED CONTROLLER
 app.classy.controller({
   name: 'editListsController',
@@ -21,11 +22,13 @@ app.classy.controller({
   },
 
   methods: {
-    updateList: function(){
+    executeQuery: function(){
       var that = this;
-      that.$http.post('/api/list/'+that.$routeParams.id, {list:that.$.d.list})
+      var listId = that.$.d.list.id;
+
+      that.$http.post(`/api/list/${listId}/execute`)
       .then(function(success){
-        console.log("LIST=>", success);
+        console.log(success);
       });
     },
 
@@ -49,6 +52,14 @@ app.classy.controller({
     remove: function(index){
       var that = this;
       that.$.d.list.querymodel.splice(index, 1);
+    },
+
+    updateList: function(){
+      var that = this;
+      that.$http.post('/api/list/'+that.$routeParams.id, {list:that.$.d.list})
+      .then(function(success){
+        console.log("LIST=>", success);
+      });
     }
   }
 });

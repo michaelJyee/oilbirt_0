@@ -142,6 +142,8 @@ app.get('/api/lists', listsApi.getLists);
 app.get('/api/list/:id', listsApi.getList);
 app.post('/api/list/:id', listsApi.updateList);
 
+app.post('/api/list/:id/execute', listsApi.execute);
+
 
 
 
