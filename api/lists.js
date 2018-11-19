@@ -65,9 +65,16 @@ exports.execute = function(req, res){
   Lists.findOne({where:{id:req.params.id}})
     .then(function(data){
       var q = JSON.parse(data.querymodel);
-      _queryModelToObject(q);
+      var where = _queryModelToObject(q);
 
-      res.send(data);
+      Contacts.findAll({where:where})
+      .then(data => {
+        res.send(data);
+      })
+      .catch(function(err){
+        console.log(err);
+        res.send(400);
+      });
     })
     .catch(function(err){
       console.log(err);
@@ -90,14 +97,6 @@ function _queryModelToObject(model){
     else if(param.opp === 'NOTEQ'){
        where[param.field][operators[param.opp]] = `${param.value}`;
     }
-
-    console.log(param);
-  });
-
-  console.log("where=>",where);
-  Contacts.findAll({where:where})
-  .then(data => {
-    console.log(data);
   });
 
   return where;

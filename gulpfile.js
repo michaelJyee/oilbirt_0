@@ -55,6 +55,7 @@ gulp.task('compile-angular', function(){
     'source/js/lib/angular-classy.js',
     'source/js/lib/angular-animate.min.js',
     'source/js/lib/angular-touch.js',
+    'source/js/lib/ohsnap.js',
     'source/js/mapp/mapp.js',
     'source/js/mapp/controllers/**/*.js'])
     .pipe(concat('mapp.js'))

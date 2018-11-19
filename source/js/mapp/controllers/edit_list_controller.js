@@ -28,6 +28,7 @@ app.classy.controller({
 
       that.$http.post(`/api/list/${listId}/execute`)
       .then(function(success){
+        ohSnap('Process success', {color: 'green'});
         console.log(success);
       });
     },
@@ -58,7 +59,7 @@ app.classy.controller({
       var that = this;
       that.$http.post('/api/list/'+that.$routeParams.id, {list:that.$.d.list})
       .then(function(success){
-        console.log("LIST=>", success);
+        ohSnap('List Updated', {color: 'green'});
       });
     }
   }
