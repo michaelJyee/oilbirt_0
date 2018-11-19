@@ -33,9 +33,9 @@
                           label Opperator:
                           select.form-control(ng-model="d.list.querymodel[$index].opp")
                             option(value="EQ") equals
-                            option(value="NOT EQ") not equal
+                            option(value="NOTEQ") not equal
                             option(value="CONTAINS") contains
-                            option(value="NOT CONTAINS") does not contain
+                            option(value="NOTCONTAINS") does not contain
 
                         //- text value inpute
                         .col-sm-5.form-group(style="text-align:left;", ng-if="(param.field === 'email' || param.field === 'name') && param.opp")
