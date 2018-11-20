@@ -29,7 +29,12 @@ app.classy.controller({
       that.$http.post(`/api/list/${listId}/execute`)
       .then(function(success){
         ohSnap('Process success', {color: 'green'});
-        console.log(success);
+        var a = document.createElement('a');
+        var url = window.URL.createObjectURL(new Blob([success.data], {type: "text/csv"}));
+        a.href = url;
+        a.download = 'myfile.csv';
+        a.click();
+        window.URL.revokeObjectURL(url);
       });
     },
 

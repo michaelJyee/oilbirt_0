@@ -41,16 +41,16 @@
                           td {{data.email}}
                           td {{data.stage}}
                           td {{data.createdAt|date:'shortDate'}}
-                          td 
-                            button add to
-                          td 
-                            button(ng-click="editContactModal(data)") edit
-                          td
-                            button(ng-click="destroy(data, $index)") delete
+                          td(style="text-align:center;") 
+                            button.btn.btn-primary add to
+                          td(style="text-align:center;") 
+                            button.btn.btn-warning(ng-click="editContactModal(data)", style="cursor:pointer;") edit
+                          td(style="text-align:center;")
+                            button.btn.btn-danger(ng-click="destroy(data, $index)", style="cursor:pointer;") delete
                 .row
                   .col-sm-6(style="padding:10px 0")
                     #dataTable_paginate.dataTables_paginate.paging_simple_numbers
-                      ul.pagination
+                      ul.pagination(style="float:left; margin-left:5px;")
                         li#dataTable_previous.paginate_button.page-item.previous(ng-click="changePage('prev')")
                           a.page-link(aria-controls='dataTable', data-dt-idx='0', tabindex='0') Previous
                         li.paginate_button.page-item(ng-repeat="tick in d.paginator")

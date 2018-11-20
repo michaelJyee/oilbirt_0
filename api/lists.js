@@ -3,6 +3,9 @@ var Sequelize = require('sequelize');
 var Lists = require('../models/sql/lists.js');
 var Contacts = require('../models/sql/contacts.js');
 var _ = require('lodash');
+
+const shortid = require('shortid');
+const fs = require('fs');
 const Op = Sequelize.Op;
 
 const operators = {
@@ -69,7 +72,10 @@ exports.execute = function(req, res){
 
       Contacts.findAll({where:where})
       .then(data => {
-        res.send(data);
+        _contactsToFile(data, function(err, filepath){
+          if(err) res.send(400);
+          else res.download(filepath);
+        });
       })
       .catch(function(err){
         console.log(err);
@@ -100,4 +106,23 @@ function _queryModelToObject(model){
   });
 
   return where;
+}
+
+function _contactsToFile(data, done){
+  var ret = "name,email\n";
+  var filepath = `/tmp/custom_list_${shortid.generate()}.csv`;
+
+  data.forEach(function(contact){
+    ret += `${contact.name},${contact.email}\n`;
+  });
+
+  fs.writeFile(filepath, ret, function(err) {
+    if(err) {
+      done(err);
+    }
+    else{
+      console.log("The file was saved!");
+      done(null, filepath);
+    }
+  }); 
 }
