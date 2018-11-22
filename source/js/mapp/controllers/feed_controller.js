@@ -4,6 +4,8 @@ app.classy.controller({
   inject: ['$scope','$http','ModalService'],
 
   init: function(){
+    $('#questionMarkId').hide();
+
     this.$.d = {
       stages: ['A','B','C','D'],
       fetching:true,
@@ -13,6 +15,7 @@ app.classy.controller({
 
     this.$.data = {};
     this.getContacts(true);
+    this.getUsers();
   },
 
   watch: {
@@ -62,6 +65,14 @@ app.classy.controller({
       }, function(error){
         console.log("error", error);
         that.$.d.fetching = false;
+      });
+    },
+
+    getUsers: function(data){
+      var that = this;
+      that.$http.get('/api/users')
+      .then(function(users){
+        that.$.d.users = users.data;
       });
     },
 
@@ -129,13 +140,16 @@ app.classy.controller({
       that.$.d.paginator = ret;
     },
 
-    sendTo: function(data){
-      var that = this;
-      that.$http.get('/api/users')
-      .then(function(users){
-        console.log("users=>",users);
-      });
-      console.log("data=>",data);
+    sendTo: function(data,e){
+      $('#questionMarkId').css( 'position', 'absolute' );
+      $('#questionMarkId').css( 'top', e.pageY );
+      $('#questionMarkId').css( 'left', e.pageX );
+      $('#questionMarkId').show();
+
+      
+      console.log("display all users");
+      console.log("button that sends");
+      console.log("email sent!");
     }
   }
 });
