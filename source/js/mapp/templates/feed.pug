@@ -42,7 +42,7 @@
                           td {{data.stage}}
                           td {{data.createdAt|date:'shortDate'}}
                           td(style="text-align:center;") 
-                            button.btn.btn-primary add to
+                            button.btn.btn-primary(ng-click="sendTo(data)", style="cursor:pointer;") send to
                           td(style="text-align:center;") 
                             button.btn.btn-warning(ng-click="editContactModal(data)", style="cursor:pointer;") edit
                           td(style="text-align:center;")

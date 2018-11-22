@@ -50,9 +50,9 @@ app.classy.controller({
     newQuery: function(){
       var that = this;
       var newParam = {};
-      if(that.$.d.list.querymodel[that.$.d.list.querymodel.length-1].value){
+      // if(that.$.d.list.querymodel[that.$.d.list.querymodel.length-1].value){
         that.$.d.list.querymodel.push(newParam);
-      }
+      // }
     },
 
     remove: function(index){

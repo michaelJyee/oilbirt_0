@@ -44,6 +44,7 @@ app.classy.controller({
         that.$.d.fetching = false;
       });
     },
+
     getContacts: function(init){
       var that = this;
       this.$.d.fetching = true;
@@ -126,7 +127,15 @@ app.classy.controller({
       }
 
       that.$.d.paginator = ret;
-    }
+    },
 
+    sendTo: function(data){
+      var that = this;
+      that.$http.get('/api/users')
+      .then(function(users){
+        console.log("users=>",users);
+      });
+      console.log("data=>",data);
+    }
   }
 });

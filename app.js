@@ -12,7 +12,7 @@ var formidable             = require('formidable');
 var csv                    = require('csvtojson');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/oilbirt',{useMongoClient: true});
+mongoose.connect('mongodb://localhost/oilbirt', {useMongoClient: true});
 
 app.use(require("express-session")({
   secret: "adsib%^fiapbusd&%^$%f9p82938pbd98pb2%^deh98",
@@ -130,7 +130,6 @@ var contactsApi = require('./api/contacts.js');
 
 app.get('/contacts/list', contactsApi.list);
 app.post('/contacts/upload_csv', loggedIn, contactsApi.uploadCSV);
-
 app.post('/contact/edit', contactsApi.editContact);
 app.post('/contact/destroy', contactsApi.destroyContact);
 
@@ -143,6 +142,12 @@ app.get('/api/list/:id', listsApi.getList);
 app.post('/api/list/:id', listsApi.updateList);
 
 app.post('/api/list/:id/execute', listsApi.execute);
+
+//Users
+var users = require('./api/users.js');
+
+app.get('/api/users', users.getAllUsers);
+
 
 
 
